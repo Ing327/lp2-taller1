@@ -2,15 +2,71 @@
   {
     "sku": "TEC-001",
     "marca": "Logitech",
-    "nombre": "Mouse inalámbrico MX Master",
+    "nombre": "Mouse inalámbrico MX Master 3S",
     "precio": 349900,
     "foto": "images/mouse-mx-master.jpg"
   },
   {
     "sku": "TEC-002",
-    "marca": "Kingston",
-    "nombre": "Memoria USB 64GB",
-    "precio": 39900,
-    "foto": "images/usb-kingston-64gb.jpg"
+    "marca": "Logitech",
+    "nombre": "Teclado inalámbrico K380",
+    "precio": 189900,
+    "foto": "images/teclado-k380.jpg"
+  },
+  {
+    "sku": "TEC-003",
+    "marca": "Logitech",
+    "nombre": "Audífonos inalámbricos G435",
+    "precio": 299900,
+    "foto": "images/audifonos-g435.jpg"
+  },
+  {
+    "sku": "TEC-004",
+    "marca": "Logitech",
+    "nombre": "Webcam C920 HD Pro",
+    "precio": 279900,
+    "foto": "images/webcam-c920.jpg"
+  },
+  {
+    "sku": "TEC-005",
+    "marca": "Samsung",
+    "nombre": "Monitor 24 pulgadas Full HD",
+    "precio": 649900,
+    "foto": "images/monitor-24.jpg"
+  },
+  {
+    "sku": "TEC-006",
+    "marca": "Redragon",
+    "nombre": "Teclado mecánico RGB",
+    "precio": 219900,
+    "foto": "images/teclado-mecanico.jpg"
+  },
+  {
+    "sku": "TEC-007",
+    "marca": "Logitech",
+    "nombre": "Mouse gaming G502 HERO",
+    "precio": 249900,
+    "foto": "images/mouse-g502.jpg"
+  },
+  {
+    "sku": "TEC-008",
+    "marca": "JBL",
+    "nombre": "Parlante Bluetooth portátil",
+    "precio": 329900,
+    "foto": "images/parlante-jbl.jpg"
+  },
+  {
+    "sku": "TEC-009",
+    "marca": "Fifine",
+    "nombre": "Micrófono USB para PC",
+    "precio": 239900,
+    "foto": "images/microfono-usb.jpg"
+  },
+  {
+    "sku": "TEC-010",
+    "marca": "Microsoft",
+    "nombre": "Control inalámbrico Xbox",
+    "precio": 299900,
+    "foto": "images/control-xbox.jpg"
   }
 ]
