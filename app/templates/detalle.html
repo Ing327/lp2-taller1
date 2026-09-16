@@ -1,24 +1,393 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="es">
 
-{% block titulo %}
-{{ producto.nombre }}
-{% endblock %}
+<head>
 
-{% block contenido %}
+    <meta charset="UTF-8">
 
-<h1>{{ producto.nombre }}</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<img src="{{ url_for('static', filename='images/' + producto.imagen) }}"
-     alt="{{ producto.nombre }}">
+    <title>{{ producto.nombre }} - Tienda Virtual</title>
 
-<p><strong>Marca:</strong> {{ producto.marca }}</p>
 
-<p><strong>SKU:</strong> {{ producto.sku }}</p>
+    <style>
 
-<p><strong>Precio:</strong> ${{ producto.precio }}</p>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<a href="{{ url_for('main.index') }}">
-    Volver al catálogo
-</a>
 
-{% endblock %}
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background-color: #f4f4f4;
+
+            color: #222;
+
+        }
+
+
+        /* ENCABEZADO */
+
+        header {
+
+            background-color: #222;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+        }
+
+
+        header h1 {
+
+            font-size: 36px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* MENU */
+
+        nav {
+
+            background-color: #333;
+
+            padding: 15px;
+
+            text-align: center;
+
+        }
+
+
+        nav a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+        }
+
+
+        nav a:hover {
+
+            color: #00aaff;
+
+        }
+
+
+        /* CONTENEDOR */
+
+        .contenedor {
+
+            width: 90%;
+
+            max-width: 1000px;
+
+            margin: 40px auto;
+
+        }
+
+
+        /* PRODUCTO */
+
+        .detalle {
+
+            background-color: white;
+
+            border-radius: 10px;
+
+            padding: 40px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 40px;
+
+            box-shadow:
+
+                0 2px 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        /* IMAGEN */
+
+        .imagen {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .imagen img {
+
+            width: 100%;
+
+            max-width: 450px;
+
+            height: 400px;
+
+            object-fit: contain;
+
+        }
+
+
+        /* INFORMACION */
+
+        .informacion {
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+        }
+
+
+        .marca {
+
+            color: #666;
+
+            font-size: 16px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .informacion h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .sku {
+
+            color: #777;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .precio {
+
+            color: #008000;
+
+            font-size: 32px;
+
+            font-weight: bold;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* BOTON */
+
+        .boton {
+
+            display: inline-block;
+
+            background-color: #007bff;
+
+            color: white;
+
+            padding: 12px 25px;
+
+            border-radius: 5px;
+
+            text-decoration: none;
+
+            text-align: center;
+
+            font-size: 17px;
+
+        }
+
+
+        .boton:hover {
+
+            background-color: #0056b3;
+
+        }
+
+
+        /* PIE DE PAGINA */
+
+        footer {
+
+            margin-top: 40px;
+
+            background-color: #222;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+        }
+
+
+        /* CELULARES */
+
+        @media (max-width: 700px) {
+
+            .detalle {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ENCABEZADO -->
+
+    <header>
+
+        <h1>Mi Tienda Virtual</h1>
+
+        <p>Detalle del producto</p>
+
+    </header>
+
+
+    <!-- MENU -->
+
+    <nav>
+
+        <a href="{{ url_for('main.index') }}">
+            ← Volver al catálogo
+        </a>
+
+    </nav>
+
+
+    <!-- CONTENIDO -->
+
+    <main class="contenedor">
+
+
+        <section class="detalle">
+
+
+            <!-- IMAGEN DEL PRODUCTO -->
+
+            <div class="imagen">
+
+                <img
+                    src="{{ url_for('static', filename=producto.foto) }}"
+                    alt="{{ producto.nombre }}"
+                >
+
+            </div>
+
+
+            <!-- INFORMACION DEL PRODUCTO -->
+
+            <div class="informacion">
+
+
+                <!-- MARCA -->
+
+                <p class="marca">
+
+                    {{ producto.marca }}
+
+                </p>
+
+
+                <!-- NOMBRE -->
+
+                <h2>
+
+                    {{ producto.nombre }}
+
+                </h2>
+
+
+                <!-- SKU -->
+
+                <p class="sku">
+
+                    SKU: {{ producto.sku }}
+
+                </p>
+
+
+                <!-- PRECIO -->
+
+                <p class="precio">
+
+                    ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
+
+                </p>
+
+
+                <!-- BOTON -->
+
+                <a
+                    class="boton"
+                    href="{{ url_for('main.index') }}"
+                >
+
+                    Volver al catálogo
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- PIE DE PAGINA -->
+
+    <footer>
+
+        <p>
+
+            &copy; 2026 Mi Tienda Virtual
+
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
