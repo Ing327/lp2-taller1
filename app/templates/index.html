@@ -2,11 +2,13 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tienda Virtual</title>
+
 
     <style>
 
@@ -16,11 +18,13 @@
             padding: 0;
         }
 
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #222;
         }
+
 
         /* ENCABEZADO */
 
@@ -31,14 +35,17 @@
             padding: 30px 20px;
         }
 
+
         header h1 {
             font-size: 36px;
             margin-bottom: 10px;
         }
 
+
         header p {
             font-size: 18px;
         }
+
 
         /* MENU */
 
@@ -48,6 +55,7 @@
             text-align: center;
         }
 
+
         nav a {
             color: white;
             text-decoration: none;
@@ -55,9 +63,11 @@
             margin: 0 20px;
         }
 
+
         nav a:hover {
             color: #00aaff;
         }
+
 
         /* CONTENEDOR */
 
@@ -66,6 +76,7 @@
             max-width: 1200px;
             margin: 30px auto;
         }
+
 
         /* BIENVENIDA */
 
@@ -80,14 +91,74 @@
                 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
+
         .bienvenida h2 {
             margin-bottom: 10px;
             font-size: 28px;
         }
 
+
         .bienvenida p {
             font-size: 18px;
         }
+
+
+        /* BUSCAR POR SKU */
+
+        .busqueda {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .busqueda h2 {
+            margin-bottom: 20px;
+        }
+
+
+        .busqueda form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+
+        .busqueda input {
+            width: 300px;
+            padding: 12px;
+
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+            font-size: 16px;
+        }
+
+
+        .busqueda button {
+            padding: 12px 25px;
+
+            background-color: #007bff;
+            color: white;
+
+            border: none;
+            border-radius: 5px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+
+        .busqueda button:hover {
+            background-color: #0056b3;
+        }
+
 
         /* PRODUCTOS */
 
@@ -99,6 +170,7 @@
 
             gap: 25px;
         }
+
 
         /* TARJETA */
 
@@ -117,9 +189,11 @@
             transition: transform 0.2s;
         }
 
+
         .producto:hover {
             transform: translateY(-5px);
         }
+
 
         /* IMAGEN */
 
@@ -131,6 +205,7 @@
 
             margin-bottom: 15px;
         }
+
 
         /* MARCA */
 
@@ -144,6 +219,7 @@
             text-transform: uppercase;
         }
 
+
         /* NOMBRE */
 
         .producto h3 {
@@ -154,6 +230,7 @@
             min-height: 45px;
         }
 
+
         /* SKU */
 
         .sku {
@@ -163,6 +240,7 @@
 
             margin-bottom: 10px;
         }
+
 
         /* PRECIO */
 
@@ -175,6 +253,7 @@
 
             margin: 15px 0;
         }
+
 
         /* BOTON */
 
@@ -194,9 +273,11 @@
             font-size: 16px;
         }
 
+
         .boton:hover {
             background-color: #0056b3;
         }
+
 
         /* PIE DE PAGINA */
 
@@ -262,6 +343,37 @@
         </section>
 
 
+        <!-- BUSCADOR POR SKU -->
+
+        <section class="busqueda">
+
+            <h2>
+                Buscar producto por SKU
+            </h2>
+
+
+            <form
+                action="{{ url_for('main.buscar') }}"
+                method="get"
+            >
+
+                <input
+                    type="text"
+                    name="sku"
+                    placeholder="Ejemplo: TEC-001"
+                    required
+                >
+
+
+                <button type="submit">
+                    Buscar
+                </button>
+
+            </form>
+
+        </section>
+
+
         <!-- PRODUCTOS -->
 
         <section class="productos">
@@ -305,9 +417,7 @@
                 <!-- PRECIO -->
 
                 <p class="precio">
-
                     ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
-
                 </p>
 
 

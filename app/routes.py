@@ -5,12 +5,14 @@ Rutas (vistas) de la Tienda Virtual.
 import json
 import os
 
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request
+
 
 # Blueprint principal
 main = Blueprint("main", __name__)
 
-# Ruta al archivo productos.json
+
+# Ruta al archivo JSON de productos
 RUTA_PRODUCTOS = os.path.join(
     os.path.dirname(__file__),
     "data",
@@ -19,24 +21,26 @@ RUTA_PRODUCTOS = os.path.join(
 
 
 def cargar_productos():
-    """
-    Lee productos.json y retorna la lista de productos.
-    """
+    """Lee productos.json y retorna la lista de productos."""
 
-    with open(RUTA_PRODUCTOS, "r", encoding="utf-8") as archivo:
+    with open(
+        RUTA_PRODUCTOS,
+        "r",
+        encoding="utf-8"
+    ) as archivo:
+
         productos = json.load(archivo)
 
     return productos
 
 
 def buscar_producto_por_sku(sku):
-    """
-    Busca un producto por su SKU.
-    """
+    """Busca un producto por su SKU."""
 
     productos = cargar_productos()
 
     for producto in productos:
+
         if producto["sku"] == sku:
             return producto
 
@@ -45,9 +49,7 @@ def buscar_producto_por_sku(sku):
 
 @main.route("/")
 def index():
-    """
-    Página principal: muestra el catálogo completo.
-    """
+    """Página principal: muestra el catálogo completo."""
 
     productos = cargar_productos()
 
@@ -57,11 +59,26 @@ def index():
     )
 
 
+@main.route("/buscar")
+def buscar():
+    """Busca un producto utilizando su SKU."""
+
+    sku = request.args.get("sku")
+
+    producto = buscar_producto_por_sku(sku)
+
+    if producto is None:
+        abort(404)
+
+    return render_template(
+        "detalle.html",
+        producto=producto
+    )
+
+
 @main.route("/producto/<sku>")
 def detalle(sku):
-    """
-    Página de detalle de un producto específico.
-    """
+    """Página de detalle de un producto específico."""
 
     producto = buscar_producto_por_sku(sku)
 
